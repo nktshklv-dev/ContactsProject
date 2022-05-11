@@ -8,7 +8,15 @@
 import UIKit
 
 class ViewController: UIViewController {
-    public var contacts: [ContactProtocol] = []
+    var storage: SaveConact!
+    public var contacts: [ContactProtocol] = []{
+        didSet{
+            contacts.sort(){
+                $0.contactName < $1.contactName
+            }
+            storage.save(contacts: contacts)
+        }
+    }
     
     @IBOutlet var tableView: UITableView!
     @IBAction func addContactButton(){
@@ -38,8 +46,16 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        contacts.append(Contact(name: "MyContact", phone: "test"))
+        storage = SaveConact()
+        loadContacts()
+       
         
+        
+        
+    }
+    
+    func loadContacts(){
+        contacts = storage.load()
     }
 
 
