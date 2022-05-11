@@ -9,6 +9,32 @@ import UIKit
 
 class ViewController: UIViewController {
     public var contacts: [ContactProtocol] = []
+    
+    @IBOutlet var tableView: UITableView!
+    @IBAction func addContactButton(){
+        let alert = UIAlertController(title: "Create a New Contact!", message: "", preferredStyle: .alert)
+        alert.addTextField(){
+            textField in textField.placeholder = "Name"
+        }
+        alert.addTextField(){
+            textField in textField.placeholder = "Phone number"
+        }
+        let createContactButton = UIAlertAction(title: "Create", style: .default){_ in
+            guard let name = alert.textFields?[0].text,
+                  let phone = alert.textFields?[1].text
+            else{
+                return
+            }
+            self.contacts.append(Contact(name: name, phone: phone))
+            self.tableView.reloadData()
+        }
+        let cancelCreatingButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(createContactButton)
+        alert.addAction(cancelCreatingButton)
+        present(alert, animated: true, completion: nil)
+        
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

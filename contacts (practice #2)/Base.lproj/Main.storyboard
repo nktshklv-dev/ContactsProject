@@ -20,7 +20,11 @@
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="6u1-da-lee"/>
-                                    <barButtonItem title="Add Contact" id="vez-n2-4PD"/>
+                                    <barButtonItem title="Add Contact" id="vez-n2-4PD">
+                                        <connections>
+                                            <action selector="addContactButton" destination="BYZ-38-t0r" id="gJD-Qp-vl6"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="PC1-8J-dAT">
@@ -44,6 +48,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PC1-8J-dAT" secondAttribute="trailing" id="n1Y-XG-adh"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="PC1-8J-dAT" id="Apl-Tj-Aq6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
