@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        contacts.append(Contact(name: "Grisha", phone:  "+3333333"))
+        contacts.append(Contact(name: "MyContact", phone: "test"))
         
     }
 
@@ -44,5 +44,15 @@ extension ViewController: UITableViewDataSource{
     }
     
     
+}
+
+extension ViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete"){_,_,_ in
+            self.contacts.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
 }
 
